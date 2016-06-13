@@ -18,7 +18,7 @@ import json
 import os
 import yaml
 
-from flask import Flask, render_template, make_response, session
+from flask import Flask, render_template, make_response, session, redirect
 from functools import wraps
 
 os.environ['TZ'] = 'Australia/Sydney' # force the right timezone
@@ -32,10 +32,9 @@ with open('data.json') as f:
     exam_data = json.loads(exam_json)
 
 NUM_SUBJECT_COLS = 3
-
-subject_cols = [[],[],[]]
-for i in range(len(subjects)):
-    subject_cols[i%NUM_SUBJECT_COLS].append(subjects[i])
+n = len(subjects)//NUM_SUBJECT_COLS
+subject_cols = [subjects[i:i+n] for i in range(0, len(subjects), n)]
+subject_cols[-2]+= (subjects[n*NUM_SUBJECT_COLS:])
 
 with open('config.yml') as c:
     cfg = yaml.load(c)
@@ -44,11 +43,11 @@ def etagged(fn):
     get_hash = lambda s: 'W/"' + str(hash(s)) + "$" + str(len(s)) + '"'
 
     @wraps(fn)
-    def tag():
+    def tag(*args, **kwargs):
         test = None
         if 'If-None-Match' in flask.request.headers:
             test = flask.request.headers['If-None-Match']
-        orig_resp = fn()
+        orig_resp = fn(*args, **kwargs)
         if type(orig_resp) == str:
             hash = get_hash(orig_resp)
             if hash == test:
@@ -92,6 +91,15 @@ def nocache(fn):
 def root():
     return render_template('index.html', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
 
+@app.route('/<int:subj_id>')
+@etagged
+def countdown(subj_id):
+    if subj_id >= len(subjects):
+        return redirect('/', code=302)
+    key = str(subj_id+1)
+#    return str(exam_data[key])
+    print(exam_data[key])
+    return render_template('countdown.html', subject=exam_data[key][0])
 
 if __name__ == '__main__':
     app.run(debug=cfg['app']['debug'], threaded=True, port=cfg['net']['port'], host='0.0.0.0')

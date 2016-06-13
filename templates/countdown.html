@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>High School Countdown</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/static/countdown.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js" ></script>
+        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>-->
+        <script>
+		var subjdata = {{ subject|safe }}
+        </script>
+        <script src="/static/countdown.js"></script>
+    </head>
+	<body>
+		<div id="exam-container">
+			<span class="not-that-big" id="exam-label">HSC</span>
+			<div id="in-container">
+				<span id="in-label">ends in</span>
+				<div class="big" id="countdown-label">
+					<span id="countdown-label" class="big">a long time...</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
