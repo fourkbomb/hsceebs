@@ -2,14 +2,19 @@ body {
     background-color: black;
     color: white;
 	font-family: "Roboto", "Oxygen-Sans", "Helvetica Neue", "Segoe UI", sans-serif;
-    width: 100%;
-    height: 100%;
 	padding-bottom: 80px;
 }
 
 input[type='checkbox'] {
     background-color: white;
     color: black;
+	margin-right: 10px;
+}
+
+h1 {
+	font-size: 6em;
+	font-weight: 100;
+	text-align: center;
 }
 
 .animated {
@@ -53,7 +58,7 @@ input[type='checkbox'] {
     padding: 10px;
     width: 50px;
 	text-align: center;
-	font-size: 40px;
+	font-size: 2em;
     cursor: pointer;
 }
 
@@ -72,12 +77,11 @@ input[type='checkbox'] {
 }
 
 .selected {
-    font-weight: bold;
-    color: red;
+    color: #FB8C00;
 }
 
 #pls-select-exam {
-	display: none;
+	color: rgba(255, 255, 255, 0);
 }
 
 #pls-select-exam.plsguys {
@@ -86,8 +90,23 @@ input[type='checkbox'] {
 	top: 0;
 	left: 0;
 	text-align: center;
-	background-color: rgba(255, 255, 255, 0.5), black;
+	font-size: 1.5em;
+	color: #2979FF;
+	background-color: rgba(0, 0, 0, 0.6);
 	width: 100%;
 }
 
+.pure-u-1 {
+	font-size: 25px;
+}
+
+@media screen and (min-width: 48em) {
+	.pure-u-1 {
+		margin-left: 0;
+	}
+
+	#pls-select-exam.plsguys {
+		font-size: 3em;
+	}
+}
 

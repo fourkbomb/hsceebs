@@ -89,7 +89,7 @@ def nocache(fn):
 @app.route('/')
 @etagged
 def root():
-    return render_template('index.html', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
+    return render_template('index.html', cur_letter='0', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
 
 @app.route('/<int:subj_id>')
 @etagged

@@ -2,10 +2,19 @@ body {
     background-color: black;
     color: white;
 	font-family: "Roboto", "Oxygen-Sans", "Helvetica Neue", "Segoe UI", sans-serif;
-    width: 100%;
-    height: 100%;
 	padding-bottom: 80px;
 }
+
+a, a:visited {
+    color: white;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+a:hover {
+    color: #2196f3;
+}
+
 
 .animated {
     -webkit-transition: all 300ms ease;
@@ -19,19 +28,49 @@ body {
 .big {
 	font-family: "Roboto";
 	font-weight: 100;
-	font-size: 96px;
+	font-size: 6em;
 }
 
 .not-that-big {
 	font-weight: 100;
-	font-size: 78px;
+	font-size: 5em;
 }
 
 #exam-container {
 	position: fixed;
 	top: 100px;
 	left: 50%;
-	width: 50%;
-	margin-left: -25%;
+	width: 100%;
+	margin-left: -50%;
 	text-align: center;
+}
+
+#fancy-bar {
+    position: fixed;
+    bottom: 0;
+    left: 1%;
+    width: 98%;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#fancy-bar a {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#fancy-bar:hover, #fancy-bar:hover a {
+    color: inherit;
+}
+
+#fancy-bar a:hover {
+    color: #2196f3;
+}
+
+@media screen and (max-width: 28em) {
+    .big {
+        font-size: 3.2em;
+    }
+
+    .not-that-big {
+        font-size: 2.7em;
+    }
 }
