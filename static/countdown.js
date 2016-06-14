@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	console.log(subjdata);
-	$('#exam-label').html(subjdata['name']);
 	// looks like the parser screwed up (some) dates.
 	var d = new Date(subjdata['times'][1]);
 	if (d.getHours() > 17 || (d.getHours() == 17 && d.getMinutes() > 0) || d.getHours() < 11) {

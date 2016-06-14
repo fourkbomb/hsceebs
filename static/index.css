@@ -17,6 +17,10 @@ input[type='checkbox'] {
     transition: all 300ms ease;
 }
 
+.letter-header {
+	font-size: 36px;
+}
+
 .hidden {
     display: none;
 }
@@ -49,11 +53,13 @@ input[type='checkbox'] {
     padding: 10px;
     width: 50px;
 	text-align: center;
+	font-size: 40px;
     cursor: pointer;
 }
 
 .cant-believe-its-not-a-button:hover {
     background-color: #1565c0;
+	transform: scaleY(2) scaleX(2);
 }
 
 #launch-countdown {
