@@ -98,8 +98,8 @@ def root():
 @etagged
 def countdown(subj_id):
     if subj_id >= len(subjects):
-        return redirect('/', code=302)
-    key = str(subj_id+1)
+        return redirect('/?nord', code=302)
+    key = str(subj_id)
     resp = make_response(render_template('countdown.html', subject=exam_data[key][0]))
     resp.set_cookie('cursubject', str(subj_id))
     return resp

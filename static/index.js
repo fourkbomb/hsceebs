@@ -11,7 +11,7 @@ $(document).ready(function() {
 			return false;
 		} else {
 			console.log(sel.val());
-			window.location = window.location.toString() + sel.val();
+			window.location = '/' + sel.val();
 		}
 	});
 });
