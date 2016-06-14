@@ -67,7 +67,6 @@ a:hover {
 
 #subj-name {
 	right: 1%;
-	bottom: inherit;
 	position: fixed;
 	text-align: right;
 	max-width: 50%;
@@ -81,6 +80,17 @@ a:hover {
 
 	#fancy-bar {
 		font-size: 1.2em;
+	}
+
+	#subj-name {
+		top: calc(100% - 1.3em);
+		top: calc(100% - 1.2em - 5px); /* not sure if nested calc? */
+		line-height: 1.3em;
+	}
+
+	#subj-name:hover {
+		bottom: 5px;
+		top: auto;
 	}
 
     .not-that-big {
