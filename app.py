@@ -89,9 +89,15 @@ def nocache(fn):
 @app.route('/')
 @etagged
 def root():
+    k = list(request.args.keys())
+    if len(k) > 0 and k[0].startswith('nord') and len(k[0]) > 4:
+        # buggy code is buggy
+        return redirect('/' + k[0][4:], code=302)
+
     if 'nord' not in request.args:
         if request.cookies.get('cursubject'):
             return redirect('/' + request.cookies.get('cursubject'), code=302)
+
     return render_template('index.html', cur_letter='0', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
 
 @app.route('/<int:subj_id>')
