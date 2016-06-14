@@ -18,7 +18,7 @@ import json
 import os
 import yaml
 
-from flask import Flask, render_template, make_response, session, redirect
+from flask import Flask, render_template, make_response, session, redirect, request
 from functools import wraps
 
 os.environ['TZ'] = 'Australia/Sydney' # force the right timezone
@@ -89,6 +89,9 @@ def nocache(fn):
 @app.route('/')
 @etagged
 def root():
+    if 'nord' not in request.args:
+        if request.cookies.get('cursubject'):
+            return redirect('/' + request.cookies.get('cursubject'), code=302)
     return render_template('index.html', cur_letter='0', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
 
 @app.route('/<int:subj_id>')
@@ -97,9 +100,9 @@ def countdown(subj_id):
     if subj_id >= len(subjects):
         return redirect('/', code=302)
     key = str(subj_id+1)
-#    return str(exam_data[key])
-    print(exam_data[key])
-    return render_template('countdown.html', subject=exam_data[key][0])
+    resp = make_response(render_template('countdown.html', subject=exam_data[key][0]))
+    resp.set_cookie('cursubject', str(subj_id))
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=cfg['app']['debug'], threaded=True, port=cfg['net']['port'], host='0.0.0.0')
