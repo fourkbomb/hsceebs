@@ -100,6 +100,10 @@ def root():
 
     return render_template('index.html', cur_letter='0', all_subjs=subjects, subjects=subject_cols, len=len, edata=exam_json)
 
+@app.route('/favicon.ico')
+def favicon():
+    return redirect('/static/favicon.ico')
+
 @app.route('/<int:subj_id>')
 @etagged
 def countdown(subj_id):
