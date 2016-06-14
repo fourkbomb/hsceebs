@@ -96,4 +96,8 @@ a:hover {
     .not-that-big {
         font-size: 2.7em;
     }
+
+	.nomobile {
+		display: none;
+	}
 }
