@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$('#subj-name').html(subjdata['name']);
 	console.log(subjdata);
 	// looks like the parser screwed up (some) dates.
 	var d = new Date(subjdata['times'][1]);

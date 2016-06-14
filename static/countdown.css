@@ -65,6 +65,12 @@ a:hover {
     color: #2196f3;
 }
 
+#subj-name {
+	right: 1%;
+	bottom: 0;
+	position: fixed;
+}
+
 @media screen and (max-width: 28em) {
     .big {
         font-size: 3.2em;
