@@ -5,7 +5,6 @@ import re
 
 soup = None
 with open(argv[-1]) as f:
-    print(argv[-1])
     soup = BeautifulSoup(''.join(f.readlines()), 'html.parser')
 
 # find the table of doom(tm)
@@ -18,7 +17,6 @@ all_subjects = set()
 
 for i in range(col_count):
     out[i] = {}
-print(out)
 rows = tbl.tbody.find_all('tr')
 
 cur_days = []
@@ -69,19 +67,18 @@ for row in rows:
                         times[1] = times[1].replace(' noon', 'pm').replace('*', '')
                         exam_info['times'].append(times)
                     else:
-                        print("comment: %s"%cur_sibling.get_text())
+                        #print("comment: %s"%cur_sibling.get_text())
                         exam_info['comments'].append(cur_sibling.get_text().strip())
                     cur_sibling = cur_sibling.next_sibling
                 temp = exam_info['times']
                 if len(temp) == 0: # empty subject?
                     continue
-                print(temp)
+                #print(temp)
                 exam_info['times'] = [temp[0][0], temp[-1][1]] # first time to last time
                 out[j][cur_days[j]].append(exam_info)
 
 import json
 print(json.dumps(out))
-print(json.dumps(list(all_subjects)))
 
 
 
