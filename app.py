@@ -111,7 +111,7 @@ def countdown(subj_id):
         return redirect('/?nord', code=302)
     key = str(subj_id)
     resp = make_response(render_template('countdown.html', subject=exam_data[key][0]))
-    resp.set_cookie('cursubject', str(subj_id))
+    resp.set_cookie('cursubject', str(subj_id), expires=2147483647) # expires jan 19 2038
     return resp
 
 if __name__ == '__main__':
